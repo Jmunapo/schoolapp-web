@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
       if (this.loaderContent) {
         this.loaderContent.close();
       }
-      return
+      return;
     }
     this.xulForm = schoolForm;
     this.adminAccount(schoolForm.value);
@@ -216,31 +216,31 @@ export class RegisterComponent implements OnInit {
     this.sendMessage();
   }
 
-  sanitiseDomain(e) {
-    const keycode = e.keyCode;
-    if (e.shiftKey) {
-      const inputValue = (<HTMLInputElement>document.getElementById('subdomain')).value;
-      (<HTMLInputElement>document.getElementById('subdomain')).value = inputValue.substring(0, inputValue.length - 1);
-      this.toster.error(`Holding shift is not allowed`);
+  validate_subdomain(subdomain: string) {
+    subdomain += '.diamond.school';
+    const regExp = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i;
+    if (regExp.test(subdomain)) {
+      return true;
     }
-    if (!(keycode > 64 && keycode < 91) &&
-      !(keycode > 47 && keycode < 58) &&
-      !(keycode > 95 && keycode < 105) &&
-      e.key !== 'Backspace' && e.key !== 'Shift'
-      && e.key !== 'CapsLock' && e.key !== 'NumLock' && e.key !== undefined) {
-      const inputValue = (<HTMLInputElement>document.getElementById('subdomain')).value;
-      (<HTMLInputElement>document.getElementById('subdomain')).value = inputValue.substring(0, inputValue.length - 1).replace(/\s+/g, '');
+    return false;
+  }
+
+  sanitiseDomain(e) {
+    const inputValue = (<HTMLInputElement>document.getElementById('subdomain')).value;
+    const domain = this.validate_subdomain(inputValue);
+    if (!domain && e.key !== 'Backspace') {
+      (<HTMLInputElement>document.getElementById('subdomain')).value = inputValue.substring(0, inputValue.length - 1);
       this.toster.error(`${e.key} not allowed on domain name`);
     }
   }
 
   setUser() {
     this.storage.setData('user', this.user)
-      .subscribe(sav => {
-        console.log(this.user);
-        console.log(sav);
-      }, err => {
-        console.log(err);
-      });
+    .subscribe(sav => {
+      console.log(this.user);
+      console.log(sav);
+    }, err => {
+      console.log(err);
+    });
   }
 }
