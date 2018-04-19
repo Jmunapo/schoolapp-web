@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="javascript:;">
+    <img src="assets\img\diamond.png" width="40" height="40" alt="Diamond">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" [class.active]="elems.home"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      href="javascript:;"(click)="open('home')">
+        <i class="fa fa-home" aria-hidden="true"></i>
+        HOME
+        <span class="sr-only">(current)</span>
+      </a>
+      <a class="nav-item nav-link"  [class.active]="elems.register"
+      data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      href="javascript:;" (click)="open('register')">
+        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+        REGISTER</a>
+      <a class="nav-item nav-link"  [class.active]="elems.about" (click)="open('about')"
+      data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      href="javascript:;">
+      <i class="fa fa-info" aria-hidden="true"></i>
+        ABOUT</a>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container" *ngIf="elems.home">
+  <div class="text-center">
+    <div class="jumbotron">
+      <h1 class="display-4">Diamond School Service</h1>
+      <p class="lead">Events, Messages and Anouncements services</p>
+      <hr class="my-5">
+      <h4>School Administrator</h4>
+      <button type="button" class="btn btn-dark" (click)="open('register')">
+        <i class="fa fa-graduation-cap fw" aria-hidden="true"></i>
+        REGISTER
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="open('about')">
+        &nbsp;<i class="fa fa-info fw" aria-hidden="true"></i>
+        ABOUT&nbsp;
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="text-center">
+    <div  *ngIf="elems.register">
+      <app-register (registrationComplete)="receiveMessage($event)"></app-register>
+    </div>
+    <div  *ngIf="elems.about">
+       <app-about></app-about>
+    </div>
+  </div>
+</div>
+
+<p *ngIf="showAlert">
+  <ngb-alert class="fixed-bottom" type="warning" (close)="closeAlert()">
+     We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings
+    please see our policy
+  </ngb-alert>
+</p>

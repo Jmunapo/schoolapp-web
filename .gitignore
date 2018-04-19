@@ -12,6 +12,7 @@
 # IDEs and editors
 /.idea
 .project
+.php
 .classpath
 .c9/
 *.launch

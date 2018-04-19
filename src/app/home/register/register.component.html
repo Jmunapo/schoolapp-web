@@ -1,0 +1,148 @@
+<ng-template #content let-d="dismiss">
+  <div class="modal-body text-center">
+    <h5><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> &nbsp; &nbsp; Please wait...</h5>
+  </div>
+</ng-template>
+<div class="container text-left">
+  <form class="needs-validation" novalidate #schoolForm="ngForm" (ngSubmit)="onSubmit(schoolForm); openSm(content)">
+    <div class="form-row">
+      <div class="col-md-12 mb-3">
+        <label for="name">School Name</label>
+        <input type="text" name="name" class="form-control" #schoolname="ngModel" [(ngModel)]="school.name" class="form-control" placeholder="School name"
+          aria-label="School Name" aria-describedby="name" required>
+      </div>
+      <div class="col-md-12 mb-3">
+        <label for="name">School Motto</label>
+        <input type="text" name="motto" class="form-control" #motto="ngModel" [(ngModel)]="school.motto" class="form-control" placeholder="School motto"
+          aria-label="School Motto" aria-describedby="motto" required>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <label for="subdomain">Subdomain</label>
+        <div class="input-group">
+          <input type="subdomain" (keyup)="sanitiseDomain($event)" name="subdomain" class="form-control" #email="ngModel" [(ngModel)]="school.subdomain" id="subdomain"
+            placeholder="subdomain" aria-describedby="inputGroupApend" required>
+            <div class="input-group-append">
+            <span class="input-group-text" id="inputGroupApend">
+             .diamond.school
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="address">Address</label>
+        <input type="text" name="address" class="form-control" #address="ngModel" [(ngModel)]="school.address"
+          id="address" placeholder="75 Nyakamiti Road" required>
+      </div>
+       <div class="col-md-3 mb-3">
+        <label for="address">Location</label>
+        <input type="text" name="location" class="form-control" #location="ngModel" [(ngModel)]="school.location"
+          id="location" placeholder="Sakubva" required>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="city">City</label>
+        <input type="text" name="city" class="form-control" #city="ngModel" [(ngModel)]="school.city" id="city"
+          placeholder="City" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="email">School Email</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend">
+              <i class="fa fa-envelope-o fa-fw"></i>
+            </span>
+          </div>
+          <input type="email" name="email" class="form-control" #email="ngModel" [(ngModel)]="school.email" id="email"
+            placeholder="email" aria-describedby="inputGroupPrepend" required>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="tell">Tell</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend">
+              <i class="fa fa-phone fa-fw"></i>
+            </span>
+          </div>
+          <input type="text" name="tell" class="form-control" #tell="ngModel" [(ngModel)]="school.tell" id="tell"
+            placeholder="(020) 123456"  minlength="6" mask="(000) 999999" aria-describedby="inputGroupPrepend" required>
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="cell">Cell</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroupPrepend">
+              <i class="fa fa-mobile fa-fw"></i>
+            </span>
+          </div>
+          <input type="text" name="cell" class="form-control" #cell="ngModel" [(ngModel)]="school.cell" id="cell"
+            placeholder="+263 771 234 567"  minlength="12" mask="+263 000 000 000" aria-describedby="inputGroupPrepend" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="password">Password</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="password">
+              <i class="fa fa-lock fa-fw"></i>
+            </span>
+          </div>
+          <input minlength="5" type="password" name="password" class="form-control" #password="ngModel" [(ngModel)]="school.password" id="password" placeholder="password"
+            aria-describedby="password" required>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="cpassword">Confirm Password</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="cpassword">
+              <i class="fa fa-lock fa-fw"></i>
+            </span>
+          </div>
+          <input minlength="5" type="password" name="cpassword" class="form-control" #password="ngModel" [(ngModel)]="school.cpassword" id="cpassword" placeholder="Confirm password"
+            aria-describedby="confirm password" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- <image-upload
+      [max]="2"
+      [url]="'https://info.diamond.school/wp-json/wp/v2/media'"
+      [headers]="{Authorization: 'MyToken'}"
+      [buttonCaption]="'Select Images!'"
+      [dropBoxMessage]="'Drop your images here!'"
+      [extensions]="['jpg','png','gif']"
+      (removed)="onRemoved($event)"
+      (uploadFinished)="onUploadFinished($event)"
+      (uploadStateChanged)="onUploadStateChanged($event)">
+    </image-upload> -->
+
+    <div class="form-group">
+      <div class="form-check">
+        <input name="check" #check="ngModel" class="form-check-input" type="checkbox"  [(ngModel)]="terms" value="" id="invalidCheck" required>
+        <label class="form-check-label" for="invalidCheck">
+          Agree to terms and conditions
+        </label>
+        <div class="invalid-feedback">
+          You must agree before submitting.
+        </div>
+      </div>
+    </div>
+    <div class="form-group text-center">
+      <button class="btn btn-default" type="submit" [disabled]="!schoolForm.valid || !terms || school.password !== school.cpassword" >
+        <i class="fa fa-floppy-o"></i>
+        Submit
+      </button>
+    </div>
+  </form>
+</div>
+<app-footer></app-footer>
