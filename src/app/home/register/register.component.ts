@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   xulForm: any;
   media_nonce: string;
   loaderContent: any;
+  recaptChaSolved = false;
   constructor(private remote: RemoteService,
     public formBuilder: FormBuilder,
     private sanitizer: DomSanitizer,
@@ -30,6 +31,11 @@ export class RegisterComponent implements OnInit {
 
   sendMessage() {
     this.registrationComplete.emit();
+  }
+
+  resolved(e) {
+    console.log(e);
+    this.recaptChaSolved = true;
   }
 
 
@@ -52,6 +58,16 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(schoolForm: NgForm): void {
+    if (!schoolForm.valid ||
+      !this.terms ||
+      this.school.password !== this.school.cpassword ||
+      !this.recaptChaSolved) {
+      this.toster.error(`Gotchaa...!!! -> Follow the rules`);
+      if (this.loaderContent) {
+        this.loaderContent.close();
+      }
+      return
+    }
     this.xulForm = schoolForm;
     this.adminAccount(schoolForm.value);
   }

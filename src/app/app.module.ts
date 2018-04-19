@@ -23,6 +23,7 @@ import { RemoteService } from './home/common/remote.service';
 import { StorageService } from './home/common/storage.service';
 import { NewUserComponent } from './home/new-user/new-user.component';
 import { AboutComponent } from './home/about/about.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AboutComponent } from './home/about/about.component';
     NgxMaskModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    RecaptchaModule.forRoot(),
     ImageUploadModule.forRoot(),
     HttpClientModule
   ],

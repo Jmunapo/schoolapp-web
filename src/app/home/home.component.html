@@ -64,8 +64,12 @@
 </div>
 
 <p *ngIf="showAlert">
-  <ngb-alert class="fixed-bottom" type="warning" (close)="closeAlert()">
+  <ngb-alert [class.fixed-bottom]="elems.register" type="warning" (close)="closeAlert()">
      We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings
     please see our policy
   </ngb-alert>
 </p>
+
+<nav *ngIf="!elems.register" class="navbar fixed-bottom navbar-light  bg-light justify-content-center">
+  <p>&copy;2018 by MJ</p>
+</nav>
