@@ -71,20 +71,28 @@ export class RemoteService {
     return this.http.get(url);
   }
 
-  createMessage(subdomain: string, token: string) {
-    this.headers = this.headers.append('Content-Type', 'application/json');
-    this.headers = this.headers.append('Authorization', `Bearer ${token}`);
-    const url = `http://${subdomain}.diamond.school/wp-json/wp/v2/groupa`;
-    console.log(this.headers);
-    return this.http.post(url, {
-      title: 'My newest event!!!',
-      status: 'publish',
-      location: 'Mutare'
-    }, { headers: this.headers});
-  }
+  // createMessage(subdomain: string, token: string) {
+  //   this.headers = this.headers.append('Content-Type', 'application/json');
+  //   this.headers = this.headers.append('Authorization', `Bearer ${token}`);
+  //   const url = `http://${subdomain}.diamond.school/wp-json/wp/v2/groupa`;
+  //   console.log(this.headers);
+  //   return this.http.post(url, {
+  //     title: 'My newest event!!!',
+  //     status: 'publish',
+  //     location: 'Mutare'
+  //   }, { headers: this.headers});
+  // }
 
   getEvents() {
     const url = `http://basic.diamond.school/wp-json/wp/v2/events`;
     return this.http.get(url);
+  }
+
+  downloadSubscription(data: any) {
+    console.log(data);
+    this.headers = this.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    const url = `https://info.diamond.school/wp-json/newsletter/v1/subscribe`;
+    console.log(url, data, { headers: this.headers });
+    return this.http.post(url, data, { headers: this.headers });
   }
 }

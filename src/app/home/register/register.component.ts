@@ -44,8 +44,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(data => {
         this.user = data;
         if (data) {
-          setTimeout(() => this.toster.info(`You already registered a school please use login,
-        or contact your webmaster`));
+          setTimeout(() => this.toster.info(`You already registered a school`));
         }
         console.log(data);
       }, err => {

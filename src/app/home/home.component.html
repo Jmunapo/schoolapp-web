@@ -21,6 +21,11 @@
       href="javascript:;" (click)="open('register')">
         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
         REGISTER</a>
+        <a class="nav-item nav-link"  [class.active]="elems.downloads" (click)="open('downloads')"
+      data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      href="javascript:;">
+      <i class="fa fa-download" aria-hidden="true"></i>
+        DOWNLOADS</a>
       <a class="nav-item nav-link"  [class.active]="elems.about" (click)="open('about')"
       data-toggle="collapse" data-target="#navbarNavAltMarkup"
       href="javascript:;">
@@ -31,7 +36,7 @@
 </nav>
 
 
-
+<!-- Homepage container -->
 <div class="container" *ngIf="elems.home">
   <div class="text-center">
     <div class="jumbotron">
@@ -51,7 +56,7 @@
   </div>
 </div>
 
-
+<!-- Other pages switch -->
 <div class="container">
   <div class="text-center">
     <div  *ngIf="elems.register">
@@ -60,16 +65,19 @@
     <div  *ngIf="elems.about">
        <app-about></app-about>
     </div>
+    <div  *ngIf="elems.downloads">
+        <app-downloads></app-downloads>
+    </div>
   </div>
 </div>
 
 <p *ngIf="showAlert">
-  <ngb-alert [class.fixed-bottom]="elems.register" type="warning" (close)="closeAlert()">
+  <ngb-alert [class.fixed-bottom]="elems.register || elems.downloads" type="warning" (close)="closeAlert()">
      We use cookies to improve your experience. By your continued use of this site you accept such use. To change your settings
     please see our policy
   </ngb-alert>
 </p>
 
-<nav *ngIf="!elems.register" class="navbar fixed-bottom navbar-light  bg-light justify-content-center">
+<nav [class.fixed-bottom]="!elems.register && !elems.downloads" class="navbar navbar-light  bg-light justify-content-center">
   <p>&copy;2018 by MJ</p>
 </nav>

@@ -10,7 +10,8 @@ export class HomeComponent implements OnInit {
   elems = {
     home: true,
     register: false,
-    about: false
+    about: false,
+    downloads: false
   };
   token = null;
   message = new User();

@@ -1,0 +1,22 @@
+.hasbeen{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #007bff;
+    line-height: 2em;
+    font-weight: normal;
+}
+.counter{
+    font-size: 3.5rem;
+    font-family: -webkit-pictograph;
+    color: darkorange;
+}
+.times{
+    color: #007bff;
+    font-weight: 100;
+    font-family: 'Lucida Sans',
+    'Lucida Sans Regular',
+    'Lucida Grande',
+    'Lucida Sans Unicode',
+    Geneva,
+    Verdana,
+    sans-serif;
+}

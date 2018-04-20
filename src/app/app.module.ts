@@ -24,6 +24,7 @@ import { StorageService } from './home/common/storage.service';
 import { NewUserComponent } from './home/new-user/new-user.component';
 import { AboutComponent } from './home/about/about.component';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { DownloadsComponent } from './home/downloads/downloads.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { RecaptchaModule } from 'ng-recaptcha';
     RegisterComponent,
     FooterComponent,
     NewUserComponent,
-    AboutComponent
+    AboutComponent,
+    DownloadsComponent
   ],
   imports: [
     BrowserModule,
