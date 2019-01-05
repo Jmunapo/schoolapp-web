@@ -216,7 +216,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validate_subdomain(subdomain: string) {
-    subdomain += '.diamond.school';
+    subdomain += '.schoolapp.co.zw';
     const regExp = /^(?!:\/\/)([a-zA-Z0-9]+\.)?[a-zA-Z0-9][a-zA-Z0-9-]+\.[a-zA-Z]{2,6}?$/i;
     if (regExp.test(subdomain)) {
       return true;
@@ -228,7 +228,7 @@ export class RegisterComponent implements OnInit {
     const inputValue = (<HTMLInputElement>document.getElementById('subdomain')).value;
     const domain = this.validate_subdomain(inputValue);
     if (!domain && e.key !== 'Backspace') {
-      (<HTMLInputElement>document.getElementById('subdomain')).value = inputValue.substring(0, inputValue.length - 1);
+      //(<HTMLInputElement>document.getElementById('subdomain')).value = inputValue.substring(0, inputValue.length - 1);
       this.toster.error(`${e.key} not allowed on domain name`);
     }
   }
